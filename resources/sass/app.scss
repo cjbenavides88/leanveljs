@@ -1,0 +1,26 @@
+//ABSTRACTS
+@import 'abstracts/variables';
+
+//VENDORS
+@import 'vendors/bootstrap';
+@import 'vendors/twemoji';
+@import 'vendors/fontsawesonme';
+
+//BASE
+@import 'base/animations';
+@import 'base/fonts';
+@import 'base/typography';
+@import 'base/base';
+
+//LAYOUT
+@import 'layout/views';
+
+//COMPONENTS
+@import 'components/buttons';
+@import 'components/scrollbar';
+
+//PAGES
+@import 'pages/home';
+
+//THEMES
+@import 'themes/theme';
