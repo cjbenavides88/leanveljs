@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    private $url = 'https://polaris6365.leankit.com/io/card';
     /**
      * Create a new controller instance.
      *
