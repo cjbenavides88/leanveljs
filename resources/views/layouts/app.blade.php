@@ -3,8 +3,8 @@
 <head>
     @include('includes.head')
 </head>
-    <body>
-        @yield('content')
+    <body class="h-100">
+    @yield('content')
         @include('includes.scripts')
         @yield('js')
     </body>

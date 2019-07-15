@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\LeanKit;
 
-use GuzzleHttp\Client;
+use App\Http\Helpers\Leankit\LeanKitHelper;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LeanKitRequest extends FormRequest

@@ -12,6 +12,11 @@
 */
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/test', 'HomeController@test')->name('test');
 
+
+
+Route::prefix('leankit')->group(function (){
+    Route::post('login','LeankitController@login');
+    Route::get('boards','LeankitController@boards');
+});
 
