@@ -7,6 +7,8 @@ window.Vue = Vue;
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+// import BootstrapVue from 'bootstrap-vue';
+// Vue.use(BootstrapVue)
 /**
  * Event Bus to communicate components globally
  */
@@ -36,8 +38,8 @@ try {
     require('bootstrap')
 
 
-    /*    require('jquery-toast-plugin');
-        window.swal     = require('sweetalert2');*/
+    require('jquery-toast-plugin');
+    // window.swal     = require('sweetalert2');
 
 } catch (e) {}
 
@@ -87,16 +89,20 @@ axios.interceptors.response.use(function(response){
                 return Promise.reject(error)
             }else if(error.config.errorHandle === true){
                 let resp = error.response;
-                if ( resp.status == 422 ) {
-                    let errors = resp.data.errors;
-                    for (var i in errors) {
-                        $.toast({
-                            hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
-                            heading: 'Information',
-                            text: errors[i],
-                            icon: 'error',
-                        })
+                if ( resp.status > 400 && resp.status < 500 ) {
+                    console.log(resp);
+                    let errors = [];
+                    for (let i in resp.data.errors) {
+                        errors.push(resp.data.errors[i]);
                     }
+
+                    $.toast({
+                        hideAfter: 6000,
+                        heading: 'Information',
+                        text: errors,
+                        icon: 'error',
+                        showHideTransition: 'slide'
+                    })
                 }
             }else{
                 return Promise.reject(error)

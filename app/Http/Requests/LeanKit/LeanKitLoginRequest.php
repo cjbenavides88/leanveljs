@@ -27,7 +27,7 @@ class LeanKitLoginRequest extends FormRequest
     {
         return [
             'account'   => 'required',
-            'email'     => 'required',
+            'email'     => 'required|email',
             'password'  => 'required',
         ];
     }
@@ -39,6 +39,14 @@ class LeanKitLoginRequest extends FormRequest
         $password   = $this->request->get('password');
 
         $helper = new LeanKitHelper($account, $email, $password);
-        return $helper->getCurrentUser();
+        $response = $helper->getCurrentUser();
+
+        if($response->getStatusCode() == 200){
+            session()->put('account',$account);
+            session()->put('email',$email);
+            session()->put('password',$password);
+        }
+
+        return $response;
     }
 }

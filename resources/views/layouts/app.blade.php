@@ -3,7 +3,7 @@
 <head>
     @include('includes.head')
 </head>
-    <body class="h-100">
+    <body class="h-100 animated">
     @yield('content')
         @include('includes.scripts')
         @yield('js')

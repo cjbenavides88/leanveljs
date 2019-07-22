@@ -28,13 +28,12 @@ class LeanKitHelper
     }
 
     private function apiCall(string $method, string $url, array $query = []){
-
         $this->options['query'] = $query;
         try{
             $result = $this->client->request($method,$url,$this->options);
             return $result;
         }catch ( ClientException $clientException){
-            return $clientException->getResponse()->getBody()->getContents();
+            return $clientException->getResponse();
         }
     }
 
