@@ -41,7 +41,7 @@
                                     <input aria-label="Leankit Account Password"
                                            class="form-control"
                                            placeholder="Password"
-                                           type=""
+                                           type="password"
                                            v-model="from.password">
                                 </div>
                             </div>

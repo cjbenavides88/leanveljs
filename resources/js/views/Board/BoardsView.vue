@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="col-lg-2 py-2" v-for="(board, index) in app.boards">
                     <div :id="board.id" class="card h-100">
-                        <div class="card-body ">
+                        <div class="card-body h-100 ">
                             <h5 class="card-title">{{ board.title }}</h5>
-                            <p class="card-text">{{ board.description }}</p>
+                            <p class="card-text ">{{ board.description }}</p>
                             <p class="text-right">
                                 <a href="#" class="btn btn-primary">See Board</a>
                             </p>
