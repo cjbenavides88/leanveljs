@@ -31,7 +31,7 @@ class LeanKitHelper
         $this->options['query'] = $query;
         try{
             $result = $this->client->request($method,$url,$this->options);
-            return $result->getBody()->getContents();
+            return $result;
         }catch ( ClientException $clientException){
             return $clientException->getResponse();
         }

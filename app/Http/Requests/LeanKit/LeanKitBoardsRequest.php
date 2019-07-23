@@ -49,12 +49,12 @@ class LeanKitBoardsRequest extends FormRequest
         $password   = session()->get('password');
 
         $helper = new LeanKitHelper($account, $email, $password);
-        $response['board'] = json_decode($helper->getBoard($boardID));
+        $response['board'] = json_decode($helper->getBoard($boardID)->getBody()->getContents());
         $cardsQuery = [
             'board' => $boardID,
             'limit' => 300,
         ];
-        $response['cards'] = json_decode($helper->getCards($cardsQuery));
+        $response['cards'] = json_decode($helper->getCards($cardsQuery)->getBody()->getContents());
         return $response;
     }
 }
