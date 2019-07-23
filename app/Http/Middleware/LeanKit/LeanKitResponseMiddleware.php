@@ -18,6 +18,9 @@ class LeanKitResponseMiddleware
         $response = $next($request);
         if($response->getStatusCode() != 200){
             $content = json_decode($response->getContent());
+
+            dd($content);
+
             try{
                 $response_content = [
                     'errors'    => [$content->error],

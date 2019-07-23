@@ -21,5 +21,6 @@ Route::group(
 
     Route::post('login','LeankitController@login');
     Route::get('boards','LeankitController@boards');
+    Route::post('board','LeankitController@board');
 });
 

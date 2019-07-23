@@ -40,4 +40,21 @@ class LeanKitBoardsRequest extends FormRequest
 
         return $response;
     }
+
+    public function board($boardID)
+    {
+
+        $account    = session()->get('account');
+        $email      = session()->get('email');
+        $password   = session()->get('password');
+
+        $helper = new LeanKitHelper($account, $email, $password);
+        $response['board'] = json_decode($helper->getBoard($boardID));
+        $cardsQuery = [
+            'board' => $boardID,
+            'limit' => 300,
+        ];
+        $response['cards'] = json_decode($helper->getCards($cardsQuery));
+        return $response;
+    }
 }
