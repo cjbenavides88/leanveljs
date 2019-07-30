@@ -100,7 +100,7 @@
                         this.app.login = true;
 
                         setTimeout(() => {
-                            this.$router.push('/board');
+                            this.$router.push('/boards');
                         }, 3000)
                     })
                     .catch( error => {

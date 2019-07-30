@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-2 py-2" v-for="(board, index) in app.boards">
+                <div class="col-lg-2" v-for="(board, index) in app.boards">
                     <div :id="board.id" class="card h-100" @click="showBoard(board.id)">
                         <div class="card-body h-100 ">
                             <h5 class="card-title">{{ board.title }}</h5>
