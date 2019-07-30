@@ -29,8 +29,24 @@
                     <div class="table-cell p-2">{{card.title}}</div>
                     <div class="table-cell p-2">{{card.id}}</div>
                     <div class="table-cell p-2">{{card.lane.title}}</div>
-                    <div class="table-cell p-2">{{ (card.taskBoardStats ? card.taskBoardStats.totalSize :  ' - ') }}</div>
-                    <div class="table-cell p-2">{{ (card.taskBoardStats ? card.taskBoardStats.totalCount : ' - ') }}</div>
+                    <div class="table-cell p-2 text-center">
+                        <div  v-if="card.taskBoardStats">
+                            <div>{{ card.taskBoardStats.completedSize }} / {{ card.taskBoardStats.totalSize }}</div>
+                            <div class="progress" style="height: 5px;">
+                                <div  class="progress-bar" role="progressbar" :style="{ width : Math.round((card.taskBoardStats.completedSize/card.taskBoardStats.totalSize)*100) + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div v-else> - </div>
+                    </div>
+                    <div class="table-cell p-2 text-center">
+                        <div  v-if="card.taskBoardStats">
+                            <div>{{ card.taskBoardStats.completedCount }} / {{ card.taskBoardStats.totalCount }}</div>
+                            <div class="progress" style="height: 5px;">
+                                <div  class="progress-bar" role="progressbar" :style="{ width : Math.round((card.taskBoardStats.completedCount/card.taskBoardStats.totalCount)*100) + '%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div v-else> - </div>
+                    </div>
                     <div class="table-cell p-2">
                         <div class="assigned-users" v-if="card.assignedUsers">
                             <div class="d-inline-block mx-1" v-for=" user in card.assignedUsers">
