@@ -35,12 +35,10 @@ try {
     window.Popper = require('popper.js').default;
     window._ = require('lodash');
     window.moment = require('moment');
-    require('bootstrap')
-
-
+    require('bootstrap');
     require('jquery-toast-plugin');
     // window.swal     = require('sweetalert2');
-
+    window.Velocity = require('velocity-animate');
 } catch (e) {}
 
 /**

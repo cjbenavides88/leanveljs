@@ -77,7 +77,7 @@
         data: function() {
             return {
                 from: {
-                    account : '',
+                    account : 'polaris6365',
                     email   : '',
                     password: '',
                 },
@@ -100,7 +100,9 @@
                         this.app.login = true;
 
                         setTimeout(() => {
-                            this.$router.push('/boards');
+                            this.$router.push({
+                                name : 'profile'
+                            });
                         }, 3000)
                     })
                     .catch( error => {

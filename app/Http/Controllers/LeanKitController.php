@@ -20,8 +20,8 @@ class LeanKitController extends Controller
     }
 
     public function board(LeanKitBoardsRequest $request){
-
-        $key = 'board_' . $request['boardID'];
+        return $request->board($request['boardID']);
+        $key = '_board_' . $request['boardID'];
 
         if(Cache::has($key)){
             return Cache::get($key);
@@ -31,4 +31,37 @@ class LeanKitController extends Controller
             return $value;
         }
     }
+
+    public function juls(LeanKitBoardsRequest $request){
+
+        $account    = session()->get('account');
+        $email      = session()->get('email');
+        $password   = session()->get('password');
+        $helper = new LeanKitHelper($account, $email, $password);
+
+        $cardsQuery = [
+            'board' => 487537051,
+            'limit' => 500,
+            'lanes' => [
+                    835189008, // Sprint
+                    583840596, // Under Review
+                    845075320, // Blockers
+                    622709644, // Ready for Work
+                    624091426, // In Progress
+                ],
+            'only' => 'title,id,color,lane,type'
+
+
+        ];
+        return ($helper->getCards($cardsQuery));
+    }
 }
+
+
+//'lanes' => [
+//    835189008, // Sprint
+//    583840596, // Under Review
+//    845075320, // Blockers
+//    622709644, // Ready for Work
+//    624091426, // In Progress
+//]

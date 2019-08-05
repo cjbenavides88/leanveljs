@@ -5,9 +5,10 @@
                 <h1>{{ app.board.title}}</h1>
             </div>
         </div>
+        debug: sort={{currentSort}}, dir={{currentSortDir}}
         <div class="responsive-table ">
             <div class="table-heading bg-light">
-                <div class="table-header p-2">Type</div>
+                <div class="table-header p-2" @click="sort()" >Type</div>
                 <div class="table-header p-2">Brand</div>
                 <div class="table-header p-2">Title</div>
                 <div class="table-header p-2">Card ID</div>
@@ -17,7 +18,7 @@
                 <div class="table-header p-2">Assigned</div>
             </div>
             <div class="table-body">
-                <div :id="index" class="table-row bg-light" v-for="(card, index) in app.cards" >
+                <div :id="index" class="table-row bg-light" v-for="(card, index) in filteredData" >
                     <div class="table-cell p-2">
                         <div class="d-inline-block" data-toggle="tooltip" :title="card.type.title">
                             <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img">
@@ -28,7 +29,7 @@
                     <div class="table-cell p-2">{{card.customId.value}}</div>
                     <div class="table-cell p-2">{{card.title}}</div>
                     <div class="table-cell p-2">{{card.id}}</div>
-                    <div class="table-cell p-2">{{card.lane.title}}</div>
+                    <div class="table-cell p-2">{{card.lane.title}} | {{card.lane.id }}</div>
                     <div class="table-cell p-2 text-center">
                         <div  v-if="card.taskBoardStats">
                             <div>{{ card.taskBoardStats.completedSize }} / {{ card.taskBoardStats.totalSize }}</div>
@@ -76,7 +77,9 @@
                 app: {
                     board  : [],
                     cards  : [],
-                }
+                },
+                currentSort:'name',
+                currentSortDir:'asc'
             }
         },
         methods : {
@@ -90,9 +93,18 @@
                         console.log(error);
                     });
             },
+            sort(data){
+
+            }
         },
         created() {
             this.getBoards();
+        },
+        computed : {
+            filteredData(){
+
+                return this.app.cards;
+            }
         }
     }
 </script>

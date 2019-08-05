@@ -22,13 +22,13 @@ class LeanKitHelper
 
         // Default Headers
         $this->options['headers'] = [
-            'User-Agent' => 'application/json',
-            'Accept'     => 'application/json',
+            'Accept'        => 'application/json',
+            'Content-Type'  => 'application/json',
         ];
     }
 
-    public function apiCall(string $method, string $url, array $query = []){
-        $this->options['query'] = $query;
+    private function apiCall(string $method, string $url, array $query = []){
+        $this->options['query'] = $method == 'GET' ? self::cleanGetQuery($query) : $query;
         try{
             $result = $this->client->request($method,$url,$this->options);
             return $result;
@@ -37,6 +37,19 @@ class LeanKitHelper
         }
     }
 
+    /**
+     * Cleans the query parameter to be sent to Leankit, since they receive an imploded array separated with commas.
+     * @param array $query
+     * @return array
+     */
+    private function cleanGetQuery(array $query){
+        foreach ($query as $key => $value){
+            if(is_array($value)){
+                $query[$key] = implode(',',$value);
+            }
+        }
+        return $query;
+    }
 /*
 |------------------------------------------------------------------------------------------------------------------
 | Account API Calls

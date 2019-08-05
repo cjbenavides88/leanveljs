@@ -5,9 +5,12 @@ export default [
         name        : 'root'
     },
     {
-        path        : '/boards',
-        component   : require('./views/Board/BoardsView').default,
-        name        : 'boards'
+        path        : '/profile',
+        component   : require('./views/Profile/ProfileView').default,
+        name        : 'profile',
+        children    : [
+
+        ]
     },
     {
         path        : '/board/:id' ,

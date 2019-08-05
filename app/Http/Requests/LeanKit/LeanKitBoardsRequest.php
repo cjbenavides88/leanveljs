@@ -52,9 +52,11 @@ class LeanKitBoardsRequest extends FormRequest
         $response['board'] = json_decode($helper->getBoard($boardID)->getBody()->getContents());
         $cardsQuery = [
             'board' => $boardID,
-            'limit' => 300,
+            'limit' => 500,
         ];
         $response['cards'] = json_decode($helper->getCards($cardsQuery)->getBody()->getContents());
         return $response;
     }
+
+
 }
