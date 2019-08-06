@@ -5,3 +5,16 @@
   font-family: 'Exo', sans-serif;
   line-height: 1.1;
 }
+
+.user-select-none{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.user-select-all{
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
