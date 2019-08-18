@@ -43,7 +43,7 @@ class LeanKitController extends Controller
             'board' => 487537051,
             'limit' => 500,
             'lanes' => [
-                    835189008, // Sprint
+                    883690216, // Sprint
                     583840596, // Under Review
                     845075320, // Blockers
                     622709644, // Ready for Work

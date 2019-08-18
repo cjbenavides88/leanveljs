@@ -26,3 +26,14 @@ Route::group(
     Route::get('juls','LeankitController@juls');
 });
 
+
+
+
+
+
+
+
+
+
+
+

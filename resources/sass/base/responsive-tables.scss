@@ -1,0 +1,117 @@
+.responsive-table {
+  width: 100%;
+  display: table;
+
+
+  .table-caption {
+    display: table-caption;
+  }
+
+  .table-heading {
+    display: table-header-group;
+    vertical-align: middle;
+
+    .table-header {
+      padding: 0.75rem;
+      display: table-cell;
+      vertical-align: inherit;
+      font-weight: bolder;
+
+      &.sortable {
+        cursor: pointer;
+        position: relative;
+        transition: background-color .2s ease-in;
+
+        &::after { // DOWN
+          content: "\f0dd";
+          font-family: 'Font Awesome\ 5 Free';
+          font-weight: 900;
+          font-size: 1rem;
+          right: 0.75rem;
+
+          position: absolute;
+          bottom: .7em;
+          display: block;
+          opacity: .3;
+        }
+
+        &::before { // UP
+          content: "\f0de";
+          font-family: 'Font Awesome\ 5 Free';
+          font-weight: 900;
+          font-size: 1rem;
+          right: 0.75rem;
+
+          position: absolute;
+          bottom: .7em;
+          display: block;
+          opacity: .3;
+        }
+
+        &.active{
+          &.asc {
+            &::after { // DOWN
+              opacity: 1;
+            }
+          }
+
+          &.desc {
+            &::before { // UP
+              opacity: 1;
+            }
+          }
+        }
+
+        &:hover {
+          background-color: #eaeaea;
+        }
+      }
+
+
+    }
+    // SORT ARROWS
+    &.asc {
+      .sortable {
+        &.active::after{
+          opacity: 1;
+        }
+      }
+    }
+
+    &.desc {
+      .sortable {
+        &.active::before{
+          opacity: 1;
+        }
+
+      }
+    }
+  }
+
+  .table-body {
+    display: table-row-group;
+
+    .table-row {
+      display: table-row;
+
+      .table-cell {
+        padding: 0.75rem;
+        display: table-cell;
+      }
+    }
+  }
+
+  .table-footer {
+    display: table-footer-group;
+
+    .table-footer-cell {
+      display: table-cell;
+    }
+  }
+}
+
+
+.responsive-table.border-spacing-1 {
+  border-collapse: separate;
+  border-spacing: 0 1px;
+}
