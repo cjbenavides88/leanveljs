@@ -1,6 +1,3 @@
-
-
-
 import Vue from 'vue';
 window.Vue = Vue;
 
@@ -30,15 +27,12 @@ Vue.use(EventBus);
  */
 
 try {
-
     window.$ = window.jQuery = require('jquery');
     window.Popper = require('popper.js').default;
     window._ = require('lodash');
     window.moment = require('moment');
     require('bootstrap');
     require('jquery-toast-plugin');
-    // window.swal     = require('sweetalert2');
-    window.Velocity = require('velocity-animate');
 } catch (e) {}
 
 /**
@@ -124,7 +118,6 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

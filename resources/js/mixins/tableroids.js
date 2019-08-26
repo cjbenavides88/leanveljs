@@ -2,19 +2,24 @@ export const tableroids = {
     data() {
         return {
             table: {
-                data: [],
-                filteredLen: 1,
-                search: '',
+                data        : [],
+                filteredLen : 1,
+                search      : '',
                 sortData: {
-                    current: '',
-                    dir: 'asc'
+                    current : '',
+                    dir     : 'asc'
                 },
                 page: {
-                    size: 10,
-                    current: 1,
-                    pages: 0,
+                    size    : 25,
+                    current : 1,
+                    pages   : 0,
+                },
+                spreadsheet : {
+                    fileName: '',
+                    active  : true,
                 }
-            },
+            }
+            ,
         }
     },
     methods : {
@@ -60,6 +65,8 @@ export const tableroids = {
 
         //Object Helper Functions
         getValueByString(obj,str){
+            if(str.indexOf('.') === -1) { return obj[str]; }
+
             str = str.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
             str = str.replace(/^\./, '');           // strip a leading dot
             let props = str.split('.');
@@ -72,11 +79,25 @@ export const tableroids = {
                 }
             }
             return obj;
+        },
+        fetchFromObject(obj, prop) {
+
+            if(typeof obj === 'undefined') {
+                return false;
+            }
+
+            let _index = prop.indexOf('.');
+            if(_index > -1) {
+                return this.fetchFromObject(obj[prop.substring(0, _index)], prop.substr(_index + 1));
+            }
+
+            return obj[prop];
         }
 
     },
     computed : {
         filteredData() {
+
             this.table.filteredLen = 0;
             return this.table.data.filter((result) => {   // Search Quick Filter
                 let s = (JSON.stringify(result).toLowerCase().indexOf(this.table.search.toLowerCase()) !== -1);
@@ -85,8 +106,8 @@ export const tableroids = {
             }).sort((a, b) => { // Sort
                 let modifier = 1;
                 if (this.table.sortData.dir === 'desc') modifier = -1;
-                if (a[this.table.sortData.current] < b[this.table.sortData.current]) return -1 * modifier;
-                if (a[this.table.sortData.current] > b[this.table.sortData.current]) return 1 * modifier;
+                if (this.getValueByString(a, this.table.sortData.current) < this.getValueByString(b, this.table.sortData.current)) return -1 * modifier;
+                if (this.getValueByString(a, this.table.sortData.current) > this.getValueByString(b, this.table.sortData.current)) return 1 * modifier;
                 return 0;
             }).filter((row, index) => { // Pagination
                 let start = (this.table.page.current - 1) * this.table.page.size;
