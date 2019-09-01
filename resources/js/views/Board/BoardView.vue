@@ -75,7 +75,7 @@
                         <div class="table-cell">{{card.customId.value}}</div>
                         <div class="table-cell p-2">{{card.title}}</div>
                         <div class="table-cell p-2">{{card.id}}</div>
-                        <div class="table-cell p-2">{{card.lane.title}}</div>
+                        <div class="table-cell p-2">{{card.lane.title}} | {{ card.lane.id}}</div>
                         <div class="table-cell p-2 text-center">
                             <div  v-if="card.taskBoardStats">
                                 <div>{{ card.taskBoardStats.completedSize }} / {{ card.taskBoardStats.totalSize }}</div>
@@ -160,12 +160,12 @@
                         tableData[i].lane.title,    // 'Lane'
                         tableData[i].taskBoardStats ? tableData[i].taskBoardStats : 0, // 'Size'
                         tableData[i].priority,      // 'Priority'
-                        tableData[i].plannedStart,  // 'Planned Start'
-                        tableData[i].plannedFinish, // 'Planned Finished'
-                        tableData[i].actualFinish,  // 'Actual Start'
-                        tableData[i].createdOn,     // 'Created On'
-                        tableData[i].updatedOn,     // 'Updated On'
-                        tableData[i].movedOn,       // 'Moved On'
+                        new Date(tableData[i].plannedStart),  // 'Planned Start'
+                        new Date(tableData[i].plannedFinish), // 'Planned Finished'
+                        new Date(tableData[i].actualFinish),  // 'Actual Start'
+                        new Date(tableData[i].createdOn),     // 'Created On'
+                        new Date(tableData[i].updatedOn),     // 'Updated On'
+                        new Date(tableData[i].movedOn),       // 'Moved On'
                         'https://polaris6365.leankit.com/card/' + tableData[i].id,// 'URL'
                     ];
                     ws_data.push(tmbArray);
